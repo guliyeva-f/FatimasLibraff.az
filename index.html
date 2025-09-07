@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libraff</title>
+    <link rel="stylesheet" href="./src/assets/css/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./src/assets/css/font.css">
+</head>
+
+<body>
+    <div id="overlay"></div>
+    <div id="headerContainer"></div>
+
+    <div class="swiper mySwiper w-full h-[500px]">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img class="w-full h-full object-cover" src="./src/assets/img/hero2.webp"></div>
+            <div class="swiper-slide"><img class="w-full h-full object-cover" src="./src/assets/img/hero.webp"></div>
+            <div class="swiper-slide"><img class="w-full h-full object-cover" src="./src/assets/img/hero1.webp"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <section id="booksContainer" class="container m-auto p-[30px]">
+        <h1 class="text-[#0f172a] font-medium text-3xl">Bugünün seçimləri</h1>
+        <div id="books" class="grid grid-cols-6 gap-3 mt-5"></div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="./src/js/middleware/headerProvider.js"></script>
+
+    <script type="module" src="./src/js/index.js"></script>
+</body>
+
+</html>
