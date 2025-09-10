@@ -1,6 +1,5 @@
-// bu js datadan kitablari qaytarir
-
 import fetchData from './fetchData.js';
+// bu js datadan kitablari qaytarir
 
 const BASE_URL = 'https://fatimas-libraff-data.onrender.com/books';
 

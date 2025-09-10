@@ -1,14 +1,27 @@
-// bu js fayl api`yə sorgu atir
+// bu js fayl apiyə sorgu atir
 
-async function fetchData(url, options = {}) {
+async function fetchData(url, method = "GET", body = null, headers = {}) {
     try {
+        const options = {
+            method,
+            headers: {
+                "Content-Type": "application/json",
+                ...headers,
+            },
+        };
+
+        if (body) {
+            options.body = JSON.stringify(body);
+        }
+
         const res = await fetch(url, options);
+
         if (!res.ok) {
             throw new Error(`HTTP Error ${res.status}: ${res.statusText}`);
         }
+
         return res.json();
-    }
-    catch (error) {
+    } catch (error) {
         console.error(`Fetch error (${url}):`, error.message);
         throw error;
     }

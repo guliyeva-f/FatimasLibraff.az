@@ -6,7 +6,7 @@ import navYolu from "./components/navYolu.js";
 
 window.categPopUp = categPopUp;
 
-// sorgu atib kitablari ve catgegleri getiririk
+// sorgu atib kitablari ve categleri getiririk
 const [books, categs] = await Promise.all([getAllBooks(), getAllCategs()]);
 
 // url de olan querylery tuturuq

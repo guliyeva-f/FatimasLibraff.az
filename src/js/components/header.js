@@ -21,11 +21,8 @@ export function getHeader() {
                 <span class="flex font-bold text-[#1e293b] gap-1 items-center cursor-pointer transition hover:text-[#ef3340] hover:scale-105">
                     AZ <i class="fa-solid fa-angle-down text-[12px]"></i>
                     </span>
-                    <span class="flex gap-1 items-center bg-[#f4f6fc] rounded-[22px] h-full px-[10px] 
-                                cursor-pointer transition hover:bg-[#ef3340] hover:text-white hover:shadow-md">
-                    <i class="fa-regular fa-circle-user text-[20px]"></i> <span class="font-bold">Hesabım</span>
-                    <i class="fa-solid fa-angle-down text-[12px]"></i>
-                </span>
+                    <a href="/src/pages/admin.html" class="flex gap-1 items-center bg-[#f4f6fc] rounded-[22px] h-full px-[10px] 
+                                cursor-pointer transition hover:bg-[#ef3340] hover:text-white hover:shadow-md"><i class="fa-regular fa-circle-user text-[20px]"></i> <span class="font-bold">Admin Panel</span></a>
                 <div class="flex gap-2.5">
                 <i class="fa-regular fa-heart text-[22px] cursor-pointer transition hover:scale-125 hover:text-[#ef3340]"></i>
                 <i class="fa-regular fa-truck text-[22px] cursor-pointer transition hover:scale-125 hover:text-[#ef3340]"></i>
@@ -65,6 +62,7 @@ export function getHeader() {
     </nav>
     `;
 }
+
 export function getOverlay() {
     return `
     <div id="overlayPopUp" class="bg-black/50 inset-0 fixed z-50 flex hidden justify-center items-center h-full">
