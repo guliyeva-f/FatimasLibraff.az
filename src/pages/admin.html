@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <link rel="stylesheet" href="../assets/css/output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="../assets/css/font.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
     <div class="m-auto w-[95%] py-10 flex flex-col gap-10">
         <header class="flex justify-between items-center px-5">
-            <div>
-                <h1 class="text-4xl font-extrabold tracking-tight">
-                    <a href="../../index.html"
-                        class="bg-gradient-to-r from-[#CC0000] via-[#EF3340] to-red-400 bg-clip-text text-transparent">Libraff
-                    </a>
-                    <span class="text-[#34495E]">— Admin panel</span>
-                </h1>
-                <p class="text-[15px] text-slate-500 mt-1">Kitabları idarə et, yarat, redaktə et və sil</p>
-            </div>
+            <div><h1 class="text-4xl font-extrabold tracking-tight">
+                    <a href="../../index.html" class="bg-gradient-to-r text-[40px] from-[#CC0000] via-[#EF3340] to-red-400 bg-clip-text text-transparent">Libraff </a>
+                    <span class="text-[#34495E]">— Admin panel</span></h1>
+                <p class="text-[15px] text-slate-500 mt-1">Kitabları idarə et, yarat, redaktə et və sil</p></div>
             <div id="dynamicModal"></div>
             <button id="create-book" onclick="openBookModal('create')"
                 class="rounded-2xl px-5 py-3 text-white font-semibold shadow-md shadow-red-400/30 bg-gradient-to-r from-[#CC0000] to-[#EF3340] hover:from-red-700 hover:to-red-600 transition-all duration-300 cursor-pointer">
@@ -36,5 +28,4 @@
 
     <script type="module" src="../js/admin.js"></script>
 </body>
-
 </html>

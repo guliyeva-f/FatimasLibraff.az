@@ -7,7 +7,11 @@ export default async function editBookFunc(id) {
     const book = await getBookById(id);
 
     if (!book) {
-        alert("Kitab tapılmadı!");
+        Swal.fire({
+            title: "Kitab tapılmadı!",
+            icon: "info",
+            draggable: true
+        });
         return;
     }
     const obj = getFormObj();
@@ -18,10 +22,48 @@ export default async function editBookFunc(id) {
         !obj.description || !obj.pageCount || !obj.stockCount ||
         !obj.language || obj.language.length === 0
     ) {
-        alert("Bütün xanaları doldur!");
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "info",
+            title: "Bütün xanaları doldur!"
+        });
         return;
     }
 
-    await patchBook(id, obj);
-    loadBooks();
+    try {
+        await patchBook(id, obj);
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "success",
+            title: "Kitab uğurla dəyişdirildi!"
+        });
+        loadBooks();
+    } catch (error) {
+        Swal.fire({
+            title: "Xəta baş verdi! (console bax)",
+            icon: "error",
+            draggable: true
+        });
+        console.log(error.message);
+    }
 }

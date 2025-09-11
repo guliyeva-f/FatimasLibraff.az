@@ -1,4 +1,5 @@
 export default function getDetailTemplate(book, discount) {
+
     return `<div class="bg-[#f6f6f8] w-[55%] rounded-3xl overflow-hidden flex justify-center bg-contain bg-no-repeat bg-center"
                                     style="background-image: url('${book.book_img}')"></div>
             <div class="w-[45%] px-[30px] flex flex-col gap-10">
@@ -58,4 +59,5 @@ export default function getDetailTemplate(book, discount) {
                                 class="text-[#475569]">3-5</strong> iş günü ərzində.</p>
                     </div>
                 </div>
-            </div>`;}
+            </div>`;
+}

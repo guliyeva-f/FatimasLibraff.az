@@ -5,22 +5,52 @@ import bookCardTemplate from "./components/cardTemplate.js";
 import navYolu from "./components/navYolu.js";
 
 window.categPopUp = categPopUp;
+const mainSec = document.getElementById("mainSec");
 
-// sorgu atib kitablari ve categleri getiririk
-const [books, categs] = await Promise.all([getAllBooks(), getAllCategs()]);
-
-// url de olan querylery tuturuq
 const params = new URLSearchParams(window.location.search);
 const categ = params.get("categ");
 const category = params.get("category");
 const alt = params.get("alt");
 
-const categBooks = document.getElementById("categBooks");
-const result = document.getElementById("result");
-const catBooksHead = document.getElementById("catBooksHead");
-const categList = document.getElementById("categList");
+mainSec.innerHTML = `<div class="flex justify-center items-center py-20 w-full">
+    <div class="loaderr"></div></div>`;
 
-function renderHeader() {
+async function initPage() {
+  try {
+    const delay = new Promise(resolve => setTimeout(resolve, 500));
+    const [books, categs] = await Promise.all([getAllBooks(), getAllCategs(), delay]);
+
+    mainSec.innerHTML = `
+      <div class="px-[20px]">
+        <hr class="text-gray-300">
+        <div class="px-[10px]" id="catBooksHead"></div>
+      </div>
+      <section class="px-[20px] mt-8 flex gap-5">
+        <aside class="w-[300px] border rounded-2xl shrink-0 border-gray-300 p-[15px_10px]">
+          <h3 class="font-bold">Kateqoriyalar</h3>
+          <ul id="categList"></ul>
+        </aside>
+        <div class="flex flex-col gap-8 w-full">
+          <div id="result"></div>
+        </div>
+      </section>
+    `;
+
+    const result = document.getElementById("result");
+    const catBooksHead = document.getElementById("catBooksHead");
+    const categList = document.getElementById("categList");
+
+    renderHeader(catBooksHead);
+    renderBooks(books, result);
+    categList.innerHTML = generateListHTML(categs, books, categ, category, alt);
+
+  } catch (err) {
+    console.error(err);
+    mainSec.innerHTML = `<p class="text-red-500 text-center py-10">Xəta baş verdi (console bax)</p>`;
+  }
+}
+
+function renderHeader(catBooksHead) {
   catBooksHead.innerHTML = `
     <h1 class="text-[#0f172a] text-[28px] font-bold mt-4">
       ${alt || category || categ}</h1>
@@ -30,13 +60,14 @@ function renderHeader() {
   `;
 }
 
-function renderBooks(bookList) {
+function renderBooks(bookList, result) {
   const filtered = bookList.filter((book) => {
     const matchCateg = !category || book.category?.toLowerCase() === category.toLowerCase();
     const matchAlt = !alt || book.altCategory?.toLowerCase() === alt.toLowerCase();
     return categ === "Kitab" && matchCateg && matchAlt;
   });
-  categBooks.innerHTML = filtered.map(bookCardTemplate).join("");
+  result.innerHTML = `<div class="container m-auto grid grid-cols-4 gap-3">
+  ${filtered.map(bookCardTemplate).join("")}</div>`;
 
   if (!filtered.length) {
     result.innerHTML = `
@@ -67,7 +98,7 @@ function generateListHTML(categData, bookData, filterCateg, filterCategory, filt
           }
                 ${item.title}${hasBooks ? " +" : ""}
               </a>
-              ${isSelected ? renderCategoryList(item, filterCategory, filterAlt) : ""}
+              ${isSelected ? renderCategoryList(item, filterCategory, filterAlt, bookData) : ""}
             </li>`;
       })
       .join("")}
@@ -75,13 +106,13 @@ function generateListHTML(categData, bookData, filterCateg, filterCategory, filt
   `;
 }
 
-function renderCategoryList(item, filterCategory, filterAlt) {
+function renderCategoryList(item, filterCategory, filterAlt, bookData) {
   return `
     <ul class="pl-4 my-2.5 flex flex-col">
       ${item.categories
       .map((cat) => {
         const isSelected = filterCategory?.toLowerCase() === cat.title.toLowerCase();
-        const hasBooks = books.some(
+        const hasBooks = bookData.some(
           (book) => book.category?.toLowerCase() === cat.title.toLowerCase()
         );
 
@@ -98,7 +129,7 @@ function renderCategoryList(item, filterCategory, filterAlt) {
                 ${cat.title}
                 ${hasBooks ? '<i class="fa-solid fa-circle text-[#08CB00] text-[6px]"></i>' : ""}
               </a>
-              ${isSelected && cat.altCateg?.length ? renderAltCategoryList(cat, item, filterAlt) : ""}
+              ${isSelected && cat.altCateg?.length ? renderAltCategoryList(cat, item, filterAlt, bookData) : ""}
             </li>`;
       })
       .join("")}
@@ -106,13 +137,13 @@ function renderCategoryList(item, filterCategory, filterAlt) {
   `;
 }
 
-function renderAltCategoryList(cat, item, filterAlt) {
+function renderAltCategoryList(cat, item, filterAlt, bookData) {
   return `
     <ul class="pl-4 mt-2.5 flex flex-col">
       ${cat.altCateg
       .map((altName) => {
         const isSelected = filterAlt?.toLowerCase() === altName.toLowerCase();
-        const hasBooks = books.some(
+        const hasBooks = bookData.some(
           (book) =>
             book.category?.toLowerCase() === cat.title.toLowerCase() &&
             book.altCategory?.toLowerCase() === altName.toLowerCase()
@@ -138,6 +169,4 @@ function renderAltCategoryList(cat, item, filterAlt) {
   `;
 }
 
-renderHeader();
-renderBooks(books);
-categList.innerHTML = generateListHTML(categs, books, categ, category, alt);
+initPage();

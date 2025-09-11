@@ -6,26 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details</title>
     <link rel="stylesheet" href="../assets/css/output.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="../assets/css/font.css">
 </head>
 
 <body>
     <div id="overlay"></div>
     <div id="headerContainer"></div>
-
-    <main>
-        <div class="px-[30px] m-auto container">
-            <hr class="text-gray-300">
-            <div id="catBooksHead"></div>
-        </div>
-        <section id="detSection" class="container px-[30px] m-auto gap-5 mt-[25px] flex items-stretch"></section>
-        <section id="aboutBook" class="my-20 flex justify-center text-2xl text-red-900 flex-col font-bold items-center"></section>
-    </main>
-
+    <main id="mainSec"></main>
     <script type="module" src="../js/middleware/headerProvider.js"></script>
     <script type="module" src="../js/detail.js"></script>
 </body>
