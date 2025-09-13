@@ -2,6 +2,7 @@ import getAllBooks from "./services/getAllBooks.js";
 import swiper from "./components/swiper.js";
 import categPopUp from "./components/categPopUp.js";
 import bookCardTemplate from "./components/cardTemplate.js";
+import { addFavorite, removeFavorite, isFavorite } from "./utils/favoriteUtils.js";
 
 window.categPopUp = categPopUp;
 
@@ -41,13 +42,23 @@ async function renderBooks() {
         ${books.map(bookCardTemplate).join("")}
       </div>
     `;
-  } 
+  }
   catch (error) {
     booksContainer.innerHTML = `
       <p class="text-center text-red-500 my-10 font-bold">
         Kitabları yükləmək mümkün olmadı (console bax)</p>`;
-        console.log(error);
+    console.log(error);
   }
 }
+window.toggleFavorite = function (btn) {
+  const id = btn.getAttribute("data-id");
+  if (isFavorite(id)) {
+    removeFavorite(id);
+    btn.classList.remove("active");
+  } else {
+    addFavorite(id);
+    btn.classList.add("active");
+  }
+};
 
 renderBooks();

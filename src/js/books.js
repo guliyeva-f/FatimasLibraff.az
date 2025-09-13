@@ -3,6 +3,7 @@ import getAllBooks from "./services/getAllBooks.js";
 import getAllCategs from "./services/getAllCategs.js";
 import bookCardTemplate from "./components/cardTemplate.js";
 import navYolu from "./components/navYolu.js";
+import { addFavorite, removeFavorite, isFavorite } from "./utils/favoriteUtils.js";
 
 window.categPopUp = categPopUp;
 const mainSec = document.getElementById("mainSec");
@@ -168,5 +169,15 @@ function renderAltCategoryList(cat, item, filterAlt, bookData) {
     </ul>
   `;
 }
+window.toggleFavorite = function (btn) {
+  const id = btn.getAttribute("data-id");
+  if (isFavorite(id)) {
+    removeFavorite(id);
+    btn.classList.remove("active");
+  } else {
+    addFavorite(id);
+    btn.classList.add("active");
+  }
+};
 
 initPage();

@@ -24,7 +24,7 @@ export default async function loadBooks() {
         }
 
         booksSection.innerHTML = getTable(books);
-    } 
+    }
     catch (error) {
         console.error(error);
         booksSection.innerHTML = `<p class="text-2xl p-4 text-center text-red-500">Kitablar yüklənə bilmədi..(console bax)</p>`;

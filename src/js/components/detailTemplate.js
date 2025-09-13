@@ -1,5 +1,7 @@
-export default function getDetailTemplate(book, discount) {
+import { isFavorite } from "../utils/favoriteUtils.js";
 
+export default function getDetailTemplate(book, discount) {
+    const activeClass = isFavorite(book.id) ? "active" : "";
     return `<div class="bg-[#f6f6f8] w-[55%] rounded-3xl overflow-hidden flex justify-center bg-contain bg-no-repeat bg-center"
                                     style="background-image: url('${book.book_img}')"></div>
             <div class="w-[45%] px-[30px] flex flex-col gap-10">
@@ -36,9 +38,12 @@ export default function getDetailTemplate(book, discount) {
                         class="fa-solid fa-cart-shopping"></i>Səbətə əlavə et</button>
                 <div class="flex flex-col gap-6">
                     <div class="flex justify-between text-[16px] text-[#3b4c64]">
-                        <button class="flex items-center gap-1.5 hover:text-[#ef3340] cursor-pointer font-medium">
-                            <i class="fa-regular fa-heart"></i>Seçilmiş
-                        </button>
+                    <button class="transition cursor-pointer flex items-center gap-2 text-[#ef3340] font-medium transform hover:scale-110 active:scale-95 ${activeClass}" data-id="${book.id}"
+                        onclick="window.toggleFavorite(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 transition-all duration-300 ease-in-out 
+                                    stroke-[#ef3340] fill-transparent [button.active_&]:fill-[#ef3340] [button.active_&]:stroke-[#ef3340]">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21s-6-4.35-9-8.7C.7 8.15 2.64 3 7.5 3c2.28 0 3.87 1.35 4.5 2.25C12.63 4.35 14.22 3 16.5 3 21.36 3 23.3 8.15 21 12.3 18 16.65 12 21 12 21z"/>
+                        </svg><span>Seçilmiş</span>
+                    </button>
                         <a href="#" class="flex items-center gap-1.5 hover:text-[#ef3340] cursor-pointer font-medium"><i
                                 class="fa-regular fa-circle-question"></i>Sizə necə kömək edə bilərik?</a>
                     </div>

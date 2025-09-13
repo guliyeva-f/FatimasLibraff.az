@@ -2,6 +2,7 @@ import getBook from "../js/services/getBookById.js";
 import categPopUp from "./components/categPopUp.js";
 import navYolu from "./components/navYolu.js";
 import getDetailTemplate from "./components/detailTemplate.js"
+import { addFavorite, removeFavorite, isFavorite } from "./utils/favoriteUtils.js";
 
 window.categPopUp = categPopUp;
 
@@ -85,11 +86,9 @@ async function updateBookCode(id, code) {
         const res = await getBook(id, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ code })
+            body: { code }
         });
-
-        if (!res.ok) throw new Error("Kod update olunmadı");
-        return await res.json();
+        return res;
     } catch (err) {
         console.error("Kod update xətası:", err);
         return null;
@@ -100,4 +99,15 @@ function calculateDiscount(price, sale) {
     if (!price || price <= 0) return 0;
     return Math.round((1 - sale / price) * 100);
 }
+
+window.toggleFavorite = function (btn) {
+    const id = btn.getAttribute("data-id");
+    if (isFavorite(id)) {
+        removeFavorite(id);
+        btn.classList.remove("active");
+    } else {
+        addFavorite(id);
+        btn.classList.add("active");
+    }
+};
 renderBook();

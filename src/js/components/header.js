@@ -24,7 +24,7 @@ export function getHeader() {
                     <a href="/src/pages/admin.html" class="flex gap-1 items-center bg-[#f4f6fc] rounded-[22px] h-full px-[10px] 
                                 cursor-pointer transition hover:bg-[#ef3340] hover:text-white hover:shadow-md"><i class="fa-regular fa-circle-user text-[20px]"></i> <span class="font-bold">Admin Panel</span></a>
                 <div class="flex gap-2.5">
-                <i class="fa-regular fa-heart text-[22px] cursor-pointer transition hover:scale-125 hover:text-[#ef3340]"></i>
+                <a href="../../src/pages/favlar.html"><i class="fa-regular fa-heart text-[22px] cursor-pointer transition hover:scale-125 hover:text-[#ef3340]"></i></a>
                 <i class="fa-regular fa-truck text-[22px] cursor-pointer transition hover:scale-125 hover:text-[#ef3340]"></i>
                 </div>
             </div>
