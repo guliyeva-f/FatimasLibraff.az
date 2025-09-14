@@ -18,8 +18,8 @@ export default function bookCardTemplate(book) {
       <div class="p-[15px_10px] flex flex-col gap-2">
         <h3 class="text-[16px] text-[#0f172a]">${book.book_name}</h3>
         <div class="flex items-baseline gap-2">
-          <span class="text-lg font-semibold text-[#1e293b]">${book.price}₼</span>
-          <span class="text-sm text-[#767676] line-through">${book.sale}₼</span>
+          <span class="text-lg font-semibold text-[#1e293b]">${book.sale}₼</span>
+          <span class="text-sm text-[#767676] line-through">${book.price}₼</span>
         </div>
       </div>
     </div>

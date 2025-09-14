@@ -10,7 +10,7 @@ export default function getDetailTemplate(book, discount) {
                 <div class="flex flex-col gap-4">
                     <div>
                         <h2 class="text-[32px] text-[#1e293b] font-semibold">${book.book_name}<span class="text-[#5CB338] lowercase text-[18px]"> (${book.genre})</span></h2>
-                        <a class="text-[#3b4c64] text-[18px] capitalize underline" href="#">${book.author}</a>
+                        <a class="text-[#3b4c64] text-[18px] capitalize underline" href="./muellifler.html?author=${encodeURIComponent(book.author)}">${book.author}</a>
                     </div>
                     <div class="border-[1px] rounded-2xl border-[#ccc] p-[15px_20px] flex gap-6 items-center">
                         <span
